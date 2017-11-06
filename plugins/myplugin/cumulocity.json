@@ -1,0 +1,13 @@
+{
+  "name": "Hello world plugin testing",
+  "description": "Simple hello world plugin.",
+  "ngModules": [
+    "myapp.hello"
+  ],
+  "js": [
+  	"node_modules/angular-amap/dist/angular-amap.min.js",
+    "hello.module.js",
+    "hello.config.js",
+    "hello.controller.js"
+  ]
+}

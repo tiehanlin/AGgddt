@@ -1,0 +1,13 @@
+{
+  "name": "Device Events in Real-Time",
+  "description": "Plugin adds a tab to Device Details with events  displayed in real-time",
+  "category": "Examples",
+  "ngModules": [
+    "myapp.deviceEventsRealTime"
+  ],
+  "js": [
+    "deviceEventsRealTime.module.js",
+    "deviceEventsRealTime.config.js",
+    "deviceEventsRealTime.controller.js"
+  ]
+}

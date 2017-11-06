@@ -1,0 +1,12 @@
+{
+  "name": "customManagement world plugin testing",
+  "description": "Simple customManagement world plugin.",
+  "ngModules": [
+    "myapp.customManagement"
+  ],
+  "js": [
+    "customManagement.module.js",
+    "customManagement.config.js",
+    "customManagement.controller.js"
+  ]
+}

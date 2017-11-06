@@ -1,0 +1,10 @@
+{
+	"name": "Examples",
+	"comment": "Release with additional example plugins",
+	"applications": [
+		{
+			"contextPath": "cockpit",
+            "addImports": [ "car/customManagement" ]
+		}
+	]
+}

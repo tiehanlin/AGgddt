@@ -1,0 +1,20 @@
+{
+  "name": "car",
+  "availability": "PRIVATE",
+  "contextPath": "car",
+  "key": "car-appkey",
+  "resourcesUrl": "/",
+  "type": "HOSTED",
+  "tabsHorizontal": true,
+  "imports": [
+    "core/c8yBranding",
+    "cockpit/home",
+    "core/welcomeScreen",
+    "car/myplugin",
+    "devicemanagement/location",
+    "devicemanagement/deviceGroupList",
+		"core/deviceList",
+		"car/location2",
+		"car/deviceEvent"
+  ]
+}

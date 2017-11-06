@@ -1,0 +1,13 @@
+{
+	"name": "location world plugin testing",
+	"description": "Simple location world plugin.",
+	"ngModules": [
+		"myapp.location"
+	],
+	"js": [
+		"node_modules/angular-amap/dist/angular-amap.min.js",
+		"location.module.js",
+		"location.config.js",
+		"location.controller.js"
+	]
+}

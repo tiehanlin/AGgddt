@@ -1,0 +1,19 @@
+{
+  "name": "car",
+  "version": "1.0.0",
+  "description": "car system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@192.168.1.160:sunyuming/car.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular-amap": "^4.2.0",
+    "cumulocity-ui-build": "http://resources.cumulocity.com/webapps/ui/8.7.2.tar.gz"
+  }
+}

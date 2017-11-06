@@ -1,0 +1,143 @@
+<div style="overflow: hidden;">
+	<!--搜索区域-->
+	<form class="form-inline" name="custom" style="float: left;">
+		<div class="form-group">
+			<label class="sr-only" for="mainWord">关键字</label>
+			<input type="text" class="form-control" id="mainWord" placeholder="关键字" ng-model="mainWord">
+		</div>
+		<div class="form-group"  style="display: none;">
+			<label class="sr-only" for="startTime">开始时间</label>
+			<input type="text" id="startTime" ng-focus="open1()" ng-change="jugeDate()" class="form-control" uib-datepicker-popup="{{format1}}" ng-model="dt1" is-open="popup1.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" placeholder="开始时间" show-button-bar="false" alt-input-formats="altInputFormats" />
+		</div>
+		<div class="form-group"  style="display: none;">
+			<label class="sr-only" for="endTime">结束时间</label>
+			<input type="text" id="endTime" name="endTime" ng-change="jugeDate()" ng-class="{'redDiv':custom.endTime}" ng-focus="open2()" class="form-control" uib-datepicker-popup="{{format2}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions2" ng-required="true" close-text="Close" placeholder="结束时间" show-button-bar="false" alt-input-formats="altInputFormats" />
+		</div>
+		<button type="button" class="btn btn-primary" style="display: none;">查询</button>
+	</form>
+		<button type="button" class="btn btn-primary" ng-click="newOpen()" style="margin-left: 15px;">新建</button>
+</div>
+<div style="margin-top: 20px;">
+	<!--展示表格-->
+	<table class="table table-bordered table-hover text-center">
+		<tr>
+			<td>公司</td>
+			<td>创建时间</td>
+			<td>操作</td>
+		</tr>
+		<tr ng-repeat="single in group|filter:{name : mainWord}" >
+			<td>{{single.name}}</td>
+			<td >{{single.creationTime | limitTo:10}}</td>
+			<td style="width: 200px;">
+					<button type="button" class="btn btn-success btn-xs" ng-click='look("","",single.id)'>详情</button>
+					<button type="button" class="btn btn-info btn-xs" ng-click='edit("","",single.id)'>编辑</button>
+					<button type="button" class="btn btn-danger btn-xs" ng-click='del("sm","",single.id)'>删除</button>
+
+			</td>
+		</tr>
+	</table>
+</div>
+<script type="text/ng-template" id="newManager.html">
+	<!--新增客户信息模态框模态框-->
+	<div class="modal-header">
+		<h3 class="modal-title" id="newManagerTitle">新增客户信息</h3>
+	</div>
+	<div class="modal-body" id="newManagerBody">
+		<form class="form-horizontal" name="newCustom">
+			<div class="form-group">
+				<label for="customName" class="col-sm-2 control-label">客户名称</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="customName" placeholder="客户名称" ng-model='$ctrl.customName' required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="connection" class="col-sm-2 control-label">联系人</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="connection" placeholder="联系人" ng-model='$ctrl.connection' required="required">
+				</div>
+			</div>
+			<div class="form-group" ng-class="{'has-error':newCustom.phone.$error.pattern}">
+				<label for="phone" class="col-sm-2 control-label">电话</label>
+				<div class="col-sm-10">
+					<input type="text" ng-pattern='/^[0-9-]+$/' class="form-control" id="phone" name="phone" placeholder="电话" ng-model='$ctrl.phone' required="required">
+				</div>
+			</div>
+			<div class="form-group" ng-class="{'has-error':newCustom.email.$error.email}">
+				<label for="email" class="col-sm-2 control-label">邮箱</label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" id="email" name="email" placeholder="邮箱" ng-model='$ctrl.email' required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address" class="col-sm-2 control-label">地址</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="address" placeholder="地址" ng-model='$ctrl.address' required="required">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="button" ng-click="$ctrl.ok()" ng-disabled="newCustom.$invalid">保存</button>
+		<button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">取消</button>
+	</div>
+</script>
+<script type="text/ng-template" id="manager.html">
+	<!--详情和编辑客户信息模态框模态框，根据参数判断是否可以编辑-->
+	<div class="modal-header">
+		<h3 class="modal-title" id="managerTitle">{{$ctrl.title}}</h3>
+	</div>
+	<div class="modal-body" id="managerBody">
+		<form class="form-horizontal" name="newCustom">
+			<div class="form-group" >
+				<label for="customName" class="col-sm-2 control-label">客户名称</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="customName" placeholder="客户名称" ng-model='$ctrl.customName' required="required" ng-disabled='look'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="connection" class="col-sm-2 control-label">联系人</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="connection" placeholder="联系人" ng-model='$ctrl.connection' required="required" ng-disabled='look'>
+				</div>
+			</div>
+			<div class="form-group" ng-class="{'has-error':newCustom.phone.$error.pattern}">
+				<label for="phone" class="col-sm-2 control-label">电话</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="phone" name="phone" placeholder="电话" ng-model='$ctrl.phone' required="required" ng-disabled='look'>
+				</div>
+			</div>
+			<div class="form-group"  ng-class="{'has-error':newCustom.email.$error.email}">
+				<label for="email" class="col-sm-2 control-label">邮箱</label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" id="email" placeholder="邮箱" ng-model='$ctrl.email' required="required" ng-disabled='look'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address" class="col-sm-2 control-label">地址</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="address" placeholder="地址" ng-model='$ctrl.address' required="required" ng-disabled='look'>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer" ng-hide='look'>
+		<button class="btn btn-primary" type="button" ng-click="$ctrl.ok()" ng-disabled="!newCustom.$dirty||newCustom.$invalid">保存</button>
+		<button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">取消</button>
+	</div>
+	<div class="modal-footer" ng-show='look'>
+		<button class="btn btn-info" type="button" ng-click="$ctrl.cancel()">确定</button>
+	</div>
+</script>
+<script type="text/ng-template" id="del.html">
+	<!--删除信息弹窗-->
+	<div class="modal-header">
+		<h3 class="modal-title" id="delTitle">删除群组</h3>
+	</div>
+	<div class="modal-body" id="delBody">
+		确定要删除吗？
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="button" ng-click='$ctrl.okok()'>确定</button>
+		<button class="btn btn-warning" type="button" ng-click='$ctrl.cancel()'>取消</button>
+	</div>
+</script>

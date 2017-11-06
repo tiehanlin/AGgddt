@@ -1,0 +1,17 @@
+<div>
+  <div class="alert alert-warning" ng-show="events.length === 0">
+    No incoming events at the moment...
+  </div>
+  <table class="table table-hover">
+    <tr ng-repeat="e in events|orderBy:'id':true" >
+      <td style="width:30px" class="text-center">
+        <span class="badge">{{e.type}}</span>
+      </td>
+      <td>
+        {{e.text || '-- no text message --'}}
+        <small class="text-muted" style="margin-right:10px;"><strong>Created:</strong> {{e.creationTime|date:'medium'}}</small>
+        <small class="text-muted"><strong>Data:</strong> {{e | json}}</small>
+      </td>
+    </tr>
+  </table>
+</div>

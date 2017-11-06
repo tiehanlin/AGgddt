@@ -1,0 +1,6 @@
+<ng-amap map-options="opts" style="width: 1200px;height: 800px;display: block;">
+	<marker ng-repeat="x in makers" options="x" click="showWindow(e, marker, map)" loaded="markerLoaded(marker)"></marker>
+</ng-amap>
+<button class="btn btn-danger" ng-click='pupu()'>按钮</button>
+<div>{{vm.text}}</div>
+
